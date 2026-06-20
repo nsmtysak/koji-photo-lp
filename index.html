@@ -132,11 +132,13 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
 .pdfrow__meta i{height:6px;border-radius:3px;background:#e4e7ee;display:block;}
 .pdfrow__meta i.s{width:62%;}.pdfrow__meta i.m{width:88%;}
 .pdfrow__tag{align-self:flex-start;font-size:9px;font-weight:700;color:#fff;background:var(--blue);padding:2px 8px;border-radius:5px;letter-spacing:.05em;}
-.float{position:absolute;z-index:6;background:#fff;color:var(--text);border-radius:12px;box-shadow:var(--shadow);
-  padding:11px 14px;display:flex;align-items:center;gap:9px;font-weight:700;font-size:13px;}
-.float .ic{width:17px;height:17px;color:var(--blue);}
-.float--top{top:6px;right:-6px;animation:floaty 5s ease-in-out infinite;}
-.float--bot{bottom:34px;left:-24px;animation:floaty 6s ease-in-out infinite .7s;}
+/* バッジはスマホ画面の白い空白部に配置。白地でも読めるよう濃色ベタ塗り＋白文字 */
+.float{position:absolute;z-index:6;left:50%;transform:translateX(-50%);color:#fff;border-radius:12px;
+  box-shadow:0 16px 32px -12px rgba(13,22,38,.5);padding:11px 16px;display:flex;align-items:center;gap:9px;
+  font-weight:700;font-size:13px;white-space:nowrap;}
+.float .ic{width:17px;height:17px;color:#fff;}
+.float--top{top:60%;background:var(--ink);animation:floaty 5s ease-in-out infinite;}
+.float--bot{top:74%;background:var(--blue);animation:floaty 6s ease-in-out infinite .7s;}
 .pdf-badge{background:var(--pdf);color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:5px;letter-spacing:.06em;}
 @keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @media(prefers-reduced-motion:reduce){.float,.scroll-ind .mouse::after{animation:none;}}
@@ -146,9 +148,6 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
   .hero__scrim{background:linear-gradient(0deg,rgba(7,12,22,.96) 6%,rgba(7,12,22,.78) 52%,rgba(7,12,22,.58) 100%);}
   .hero__visual{order:2;}
   .scroll-ind{display:none;}
-  /* バッジは水平中央へ。スマホ上下の暗い背景に重ねて視認性を確保 */
-  .float--top{top:-18px;left:50%;right:auto;transform:translateX(-50%);}
-  .float--bot{bottom:-18px;left:50%;right:auto;transform:translateX(-50%);}
   .hero__chips{max-width:none;}
 }
 
@@ -193,7 +192,7 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
 /* ===== Steps ===== */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:s;}
 .step{background:var(--surface);border-radius:var(--radius);padding:40px 30px 32px;position:relative;box-shadow:var(--shadow-sm);border:1px solid var(--border);overflow:hidden;}
-.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:-18px;right:14px;font-size:96px;font-weight:900;color:var(--bg);z-index:0;letter-spacing:-.04em;}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:-18px;right:14px;font-size:96px;font-weight:900;color:rgba(10,132,255,.24);z-index:0;letter-spacing:-.04em;}
 .step__ic{position:relative;z-index:1;width:60px;height:60px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:var(--blue);}
 .step__ic .ic{width:28px;height:28px;color:#fff;}
 .step h3{position:relative;z-index:1;font-size:21px;font-weight:900;margin-bottom:10px;}
@@ -350,10 +349,6 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
 
     <!-- iPhone：生成された工事写真帳PDF -->
     <div class="hero__visual reveal d2">
-      <div class="float float--top"><span class="pdf-badge">PDF</span>写真帳が完成</div>
-      <div class="float float--bot">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>そのまま送付
-      </div>
       <div class="phone">
         <div class="phone__notch"></div>
         <div class="phone__screen">
@@ -364,6 +359,8 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
             <div class="pdfrow"><img src="images/foreman-c.jpg" alt="工事写真の例"><div class="pdfrow__meta"><span class="pdfrow__tag">部材</span><i class="m"></i><i class="s"></i></div></div>
           </div>
         </div>
+        <div class="float float--top"><span class="pdf-badge">PDF</span>写真帳が完成</div>
+        <div class="float float--bot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>そのまま送付</div>
       </div>
     </div>
   </div>
@@ -375,7 +372,7 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
   <div class="wrap statband__grid">
     <div class="reveal"><div class="num"><span class="pre">約</span>5<small>分</small></div><div class="lab">撮影〜送付まで</div></div>
     <div class="reveal d1"><div class="num">0<small>円</small></div><div class="lab">アプリ導入費用</div></div>
-    <div class="reveal d2"><div class="num">3<small>枚/頁</small></div><div class="lab">見やすい標準台帳</div></div>
+    <div class="reveal d2"><div class="num">2〜4<small>枚</small></div><div class="lab">1ページの枚数を選べる</div></div>
     <div class="reveal d3"><div class="num">0<small>件</small></div><div class="lab">写真の外部送信</div></div>
   </div>
 </section>
@@ -572,8 +569,6 @@ h1,h2,h3,h4{font-weight:900;line-height:1.32;letter-spacing:.01em;}
         <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>まずデモを触ってみる
       </a>
     </div>
-    <!-- ▼▼ 電話番号を差し替えてください ▼▼ -->
-    <div class="cta__contact"><span>お電話でも：<a href="tel:000-0000-0000">000-0000-0000</a>（平日 9:00–17:00）</span></div>
   </div>
 </section>
 
